@@ -1,0 +1,34 @@
+class BankAccount:
+  def __init__(self, balance):
+    self._balance = balance  # Protected attribute
+
+  @property
+  def balance(self):
+    return self._balance  # Getter property
+
+  @balance.setter
+  def balance(self, new_balance):
+    if new_balance < 0:
+      raise ValueError("Balance cannot be negative")
+    self._balance = new_balance  # Setter property
+
+# Create an instance
+account = BankAccount(1000)
+
+# Accessing balance directly (not recommended)
+# print(account._balance)  # This will not raise an error but is not recommended
+
+# Accessing balance using getter property
+print(f"Current balance: {account.balance}")
+
+# Depositing money
+account.balance += 500
+
+# Withdrawing money
+try:
+  account.balance -= 200
+except ValueError as error:
+  print(error)
+
+# Current balance
+print(f"Current balance: {account.balance}")
